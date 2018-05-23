@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def home
-    @items = Item.all
+    @items = Item.where(is_home: true)
   end
 
   def profilo
