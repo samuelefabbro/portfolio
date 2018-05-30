@@ -1,15 +1,18 @@
 ActiveAdmin.register Item do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-permit_params :title, :description, :image, :image_2, :is_home
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+
+permit_params :title, :description, :image, :image_2, :is_home, category_ids: []
+
+form do |f|
+  f.inputs do
+    f.input :title
+    f.input :description
+    f.input :image
+    f.input :image_2
+    f.input :categories, as: :check_boxes, collection: Category.order("name asc")
+    f.input :is_home
+  end
+  f.actions
+end
+
 
 end

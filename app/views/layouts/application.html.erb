@@ -9,16 +9,35 @@
   </head>
 
   <body>
-    <header>
+
+  <header>
+  	<h1>
+      <%= link_to root_path do %>
+        <%= image_tag('marinacaldari-logo.png') %>
+      <% end %>
+    </h1>
+    <nav class="extended">
+    	<%= link_to "Profilo", profilo_path %>
+      <% all_categories.each do |category| %>
+        <%= link_to category.name, category_path(category) %>
+      <% end %>
+      <%= link_to "Contatti", contatti_path %>
+    </nav>
+    <nav class="menu-toggle">
+    	<a href="#">
+        <img src="menu.svg">
+      </a>
+    </nav>
+    <div class="menu">
       <nav>
-        <%= link_to "Home", root_path %>
         <%= link_to "Profilo", profilo_path %>
         <% all_categories.each do |category| %>
           <%= link_to category.name, category_path(category) %>
         <% end %>
         <%= link_to "Contatti", contatti_path %>
       </nav>
-    </header>
+  	</div>
+  </header>
 
     <%= yield %>
   </body>
